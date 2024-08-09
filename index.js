@@ -1,3 +1,5 @@
-exports.printMsg = function () {
-  console.log("this is dice-game");
+const helloNpm = () => {
+  return "hello NPM";
 };
+
+module.exports = helloNpm;
