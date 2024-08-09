@@ -6,7 +6,15 @@
     "test": "mocha"
   },
   "keywords": [],
-  "author": "",
+  "author": "AirenMarie",
   "license": "ISC",
-  "description": ""
+  "description": "\"\"",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AirenMarie/dice-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AirenMarie/dice-game/issues"
+  },
+  "homepage": "https://github.com/AirenMarie/dice-game#readme"
 }
