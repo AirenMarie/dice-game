@@ -41,9 +41,7 @@ rollDiceBtn.addEventListener("click", () => {
     rollDice();
     rolls++;
   } else {
-    alert(
-      "You have already rolled the dice 3 times. Please select a score before rolling again."
-    );
+    alert("You have made three rolls this round. Please select a score.");
   }
 });
 
