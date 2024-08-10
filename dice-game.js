@@ -32,7 +32,14 @@ const rollDice = () => {
 };
 
 rollDiceBtn.addEventListener("click", () => {
-  rollDice();
+  if (rolls < 3) {
+    rollDice();
+    rolls++;
+  } else {
+    alert(
+      "You have already rolled the dice 3 times. Please select a score before rolling again."
+    );
+  }
 });
 
 rulesBtn.addEventListener("click", () => {
