@@ -22,12 +22,12 @@ let round = 1;
 const rollDice = () => {
   diceValuesArr = [];
   for (let i = 0; i < 5; i++) {
-    const randomValue = Math.floor(Math.random() * 6) + 1;
-    diceValuesArr.push(randomValue);
+    const randomDice = Math.floor(Math.random() * 6) + 1;
+    diceValuesArr.push(randomDice);
   }
 
-  listOfAllDice.forEach((die, index) => {
-    die.textContent = diceValuesArr[index];
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
   });
 };
 
@@ -40,6 +40,17 @@ const updateRadioOption = (index, score) => {
   scoreInputs[index].disabled = false;
   scoreInputs[index].value = score;
   scoreSpans[index].textContent = `, score = ${score}`;
+};
+
+const updateScore = (selectedValue, achieved) => {
+  score += selectedValue;
+
+  totalScore.textContent = score;
+
+  const listItem = document.createElement("li");
+  listItem.textContent = `${achieved} : ${selectedValue}`;
+
+  scoreHistory.appendChild(listItem);
 };
 
 const getHighestDuplicates = (arr) => {
@@ -78,10 +89,20 @@ const getHighestDuplicates = (arr) => {
   updateRadioOption(5, 0);
 };
 
+const resetRadioOptions = () => {
+  scoreInputs.forEach((input, index) => {
+    input.disabled = true;
+    input.checked = false;
+    input.value = 0;
+    scoreSpans[index].textContent = "";
+  });
+};
+
 rollDiceBtn.addEventListener("click", () => {
   if (rolls === 3) {
     alert("You have made three rolls this round. Please select a score.");
   } else {
+    resetRadioOptions(scoreInputs);
     rolls++;
     rollDice();
     updateStats();
@@ -91,6 +112,11 @@ rollDiceBtn.addEventListener("click", () => {
 
 rulesBtn.addEventListener("click", () => {
   isModalShowing = !isModalShowing;
-  rulesBtn.innerText = isModalShowing ? "Hide rules" : "Show rules";
-  rulesContainer.style.display = isModalShowing ? "block" : "none";
+  if (isModalShowing) {
+    rulesBtn.textContent = "Hide rules";
+    rulesContainer.style.display = "block";
+  } else {
+    rulesBtn.textContent = "Show rules";
+    rulesContainer.style.display = "none";
+  }
 });
