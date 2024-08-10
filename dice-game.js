@@ -19,7 +19,7 @@ let score = 0;
 let total = 0;
 let round = 1;
 
-rollDiceBtn.addEventListener("click", () => {
+const rollDice = () => {
   diceValuesArr = [];
   for (let i = 0; i < 5; i++) {
     const randomValue = Math.floor(Math.random() * 6) + 1;
@@ -29,6 +29,10 @@ rollDiceBtn.addEventListener("click", () => {
   listOfAllDice.forEach((die, index) => {
     die.textContent = diceValuesArr[index];
   });
+};
+
+rollDiceBtn.addEventListener("click", () => {
+  rollDice();
 });
 
 rulesBtn.addEventListener("click", () => {
