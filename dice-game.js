@@ -19,6 +19,18 @@ let score = 0;
 let total = 0;
 let round = 1;
 
+rollDiceBtn.addEventListener("click", () => {
+  diceValuesArr = [];
+  for (let i = 0; i < 5; i++) {
+    const randomValue = Math.floor(Math.random() * 6) + 1;
+    diceValuesArr.push(randomValue);
+  }
+
+  listOfAllDice.forEach((die, index) => {
+    die.textContent = diceValuesArr[index];
+  });
+});
+
 rulesBtn.addEventListener("click", () => {
   isModalShowing = !isModalShowing;
   rulesBtn.innerText = isModalShowing ? "Hide rules" : "Show rules";
