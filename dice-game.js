@@ -135,6 +135,35 @@ const resetGame = () => {
   resetRadioOptions();
 };
 
+const checkForStraights = (arr) => {
+  const sortedUniqueArr = [...new Set(arr)].sort((a, b) => a - b);
+
+  const smallStraight = [
+    [1, 2, 3, 4],
+    [2, 3, 4, 5],
+    [3, 4, 5, 6],
+  ];
+  const largeStraight = [
+    [1, 2, 3, 4, 5],
+    [2, 3, 4, 5, 6],
+  ];
+
+  for (const straight of largeStraight) {
+    if (straight.every((num) => sortedUniqueArr.includes(num))) {
+      updateRadioOption(3, 30);
+      updateRadioOption(4, 40);
+    }
+  }
+
+  for (const straight of smallStraight) {
+    if (straight.every((num) => sortedUniqueArr.includes(num))) {
+      updateRadioOption(3, 30);
+    }
+  }
+
+  updateRadioOption(5, 0);
+};
+
 rollDiceBtn.addEventListener("click", () => {
   if (rolls === 3) {
     alert("You have made three rolls this round. Please select a score.");
@@ -145,6 +174,7 @@ rollDiceBtn.addEventListener("click", () => {
     updateStats();
     getHighestDuplicates(diceValuesArr);
     detectFullHouse(diceValuesArr);
+    checkForStraights(diceValuesArr);
   }
 });
 
